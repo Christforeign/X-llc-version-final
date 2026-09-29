@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@keyframes splashPieceTl {
+  0% { transform: translate(-70px, -60px) rotate(-90deg) scale(0.4); opacity: 0; }
+  60% { transform: translate(12px, 12px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translate(18px, 18px) scale(0); opacity: 0; }
+}
+
+@keyframes splashPieceTr {
+  0% { transform: translate(70px, -60px) rotate(90deg) scale(0.4); opacity: 0; }
+  60% { transform: translate(-12px, 12px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translate(-18px, 18px) scale(0); opacity: 0; }
+}
+
+@keyframes splashPieceBl {
+  0% { transform: translate(-70px, 60px) rotate(90deg) scale(0.4); opacity: 0; }
+  60% { transform: translate(12px, -12px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translate(18px, -18px) scale(0); opacity: 0; }
+}
+
+@keyframes splashPieceBr {
+  0% { transform: translate(70px, 60px) rotate(-90deg) scale(0.4); opacity: 0; }
+  60% { transform: translate(-12px, -12px) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translate(-18px, -18px) scale(0); opacity: 0; }
+}
+
+@keyframes splashCore {
+  0% { transform: scale(0.25) rotate(-15deg); opacity: 0; filter: blur(12px); }
+  65% { transform: scale(1.08) rotate(3deg); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+}
+
+@keyframes splashBar {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(50%); }
+  100% { transform: translateX(120%); }
+}
+
+.animate-splash-piece-tl {
+  animation: splashPieceTl 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-splash-piece-tr {
+  animation: splashPieceTr 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-splash-piece-bl {
+  animation: splashPieceBl 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-splash-piece-br {
+  animation: splashPieceBr 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-splash-core {
+  animation: splashCore 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-splash-bar {
+  animation: splashBar 1.4s infinite ease-in-out;
+}
+

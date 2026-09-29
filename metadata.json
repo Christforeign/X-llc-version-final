@@ -1,0 +1,7 @@
+{
+  "name": "FlexOmni Super Platform - Mr Christ X (WordPress 7.1)",
+  "description": "FlexOmni Super Platform by Mr Christ X: Autonomous e-commerce, digital delivery, recharges, multi-services platform compatible with WordPress 7.1 infrastructure.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

@@ -1,0 +1,17 @@
+/*
+Theme Name: X Group
+Theme URI: https://xgroupdigital.com
+Author: X Group
+Author URI: https://xgroupdigital.com
+Description: Thème WordPress & WooCommerce universel, ultra-rapide, propre et 100% personnalisable. Contrôle total de la page d'accueil (choix libre des pages à afficher sur l'accueil, support complet Gutenberg & Elementor), tiroir latéral 3 points, mode sombre/clair, bandeau d'annonce, et affichage instantané sans blocage.
+Version: 4.3.0
+Requires at least: 5.8
+Tested up to: 7.1
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: xgroup-theme
+Tags: e-commerce, woocommerce, dark-mode, mobile-first, one-column, custom-menu, full-site-editing
+*/
+
+/* Les styles principaux sont chargés dans assets/css/main.css */
