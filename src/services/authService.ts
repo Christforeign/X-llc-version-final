@@ -51,7 +51,7 @@ class AuthService {
     const cleanEmail = email.trim().toLowerCase();
     if (cleanEmail === SYSTEM_ADMIN_EMAIL.toLowerCase()) {
       if (password !== ADMIN_PASSWORD) {
-        return { success: false, message: 'Mot de passe administrateur incorrect. Veuillez utiliser le mot de passe valide (#21Juin2005#).' };
+        return { success: false, message: 'Mot de passe incorrect.' };
       }
     }
 

@@ -60,21 +60,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenA
   }, []);
 
   const navLinks = [
-    { key: 'nav_home', path: '/' },
-    { key: 'nav_wp_theme', label: '📦 Thème WP (.ZIP)', path: '/theme-wordpress' },
-    { key: 'nav_digital', label: 'X Group Digital', path: '/autres' },
-    { key: 'nav_gsm', path: '/gsm' },
-    { key: 'nav_delivery', label: 'KlikeDeliv / Chauffeur', path: '/klikedeliv' },
-    { key: 'nav_shipping', path: '/shipping' },
-    { key: 'nav_marketplace', path: '/marketplace', restricted: true },
-    { key: 'nav_exchange', path: '/exchange', restricted: true },
-    { key: 'nav_games', path: '/games', restricted: true },
-    { key: 'nav_academy', label: 'Éducation & Fichiers', path: '/learning' },
-    { key: 'nav_design', label: 'Services & Panier Shein', path: '/services' },
-    { key: 'nav_support', label: 'Support & FAQ', path: '/support' },
-    { key: 'nav_solidarite', label: '💛 Aider en difficulté', path: '/solidarite' },
-    { key: 'nav_documents', path: '/documents' },
-    { key: 'nav_contact', path: '/contact' },
+    { label: 'Marché', path: '/marketplace' },
+    { label: 'Expédition', path: '/shipping' },
+    { label: 'Chauffeurs', path: '/klikedeliv' },
+    { label: 'Demandes', path: '/services' },
+    { label: 'Portefeuille', path: '/dashboard' },
+    { label: 'Paiements', path: '/checkout' },
+    { label: 'Revenus', path: '/dashboard' },
+    { label: 'Messages', path: '/support' },
+    { label: 'Échanges', path: '/exchange' },
+    { label: 'GSM Pro', path: '/gsm' },
+    { label: 'Apprendre', path: '/learning' },
+    { label: 'Aide', path: '/support' },
+    { label: 'Jeux', path: '/games' },
+    { label: 'Documents', path: '/documents' },
+    { label: '💛 Aider en difficulté', path: '/solidarite' },
   ];
 
   const handleNavClick = (path: string, restricted?: boolean) => {
@@ -187,15 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenA
 
 
 
-            {/* Bouton Télécharger Thème WordPress */}
-            <button
-              onClick={() => onNavigate('/theme-wordpress')}
-              className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition-all shadow-sm cursor-pointer"
-              title="Télécharger le thème WordPress officiel (ZIP)"
-            >
-              <span>📦</span>
-              <span className="hidden md:inline">Thème WP (.ZIP)</span>
-            </button>
+
 
             {/* Cart Button */}
             <button
@@ -328,7 +320,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenA
                   isActive ? 'bg-yellow-400 text-black font-bold' : 'text-neutral-300 hover:bg-neutral-900'
                 }`}
               >
-                <span>{t(link.key)}</span>
+                <span>{link.label}</span>
                 {link.restricted && !currentUser && <Lock className="w-3.5 h-3.5 text-yellow-500/80" />}
               </button>
             );

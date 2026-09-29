@@ -447,12 +447,12 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate }) => {
 
               {/* Accordion list */}
               <div className="divide-y divide-neutral-800/80 mt-2">
-                {filteredFaqs.map((faq, idx) => {
-                  const isOpen = expandedFaq === idx;
+                {filteredFaqs.map((faq, index) => {
+                  const isOpen = expandedFaq === index;
                   return (
-                    <div key={idx} className="py-3.5">
+                    <div key={`faq-${index}-${faq.category}`} className="py-3.5">
                       <button
-                        onClick={() => setExpandedFaq(isOpen ? null : idx)}
+                        onClick={() => setExpandedFaq(isOpen ? null : index as any)}
                         className="w-full text-left flex items-start justify-between gap-3 text-sm font-bold text-neutral-200 hover:text-amber-400 transition-colors"
                       >
                         <span>{faq.q}</span>
