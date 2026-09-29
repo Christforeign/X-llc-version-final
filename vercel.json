@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "env": {
+    "VITE_API_URL": {
+      "description": "API Backend URL (optional, defaults to localStorage)",
+      "default": "http://localhost:3001"
+    },
+    "VITE_APP_ENV": {
+      "description": "App environment",
+      "default": "production"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
