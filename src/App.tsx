@@ -31,12 +31,10 @@ import { authService } from './services/authService';
 import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
-  // Current route synced with window.location.pathname
   const [currentPath, setCurrentPath] = useState<string>(window.location.pathname || '/');
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
-  // Cart state persisted to localStorage
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
       const saved = localStorage.getItem('xgroup_cart_v1');
@@ -46,7 +44,6 @@ export default function App() {
     }
   });
 
-  // Keep path synced with browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname || '/');
@@ -55,7 +52,6 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Save cart changes
   useEffect(() => {
     try {
       localStorage.setItem('xgroup_cart_v1', JSON.stringify(cart));
@@ -71,7 +67,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Cart Handlers
   const handleAddToCart = (item: MarketplaceItem) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.id === item.id);
@@ -106,7 +101,6 @@ export default function App() {
 
   const totalCartCount = cart.reduce((acc, i) => acc + i.quantity, 0);
 
-  // Render Page Content based on Route
   const renderRoute = () => {
     switch (currentPath) {
       case '/':
@@ -239,6 +233,7 @@ export default function App() {
         );
 
       case '/dashboard':
+      case '/xgroup-admin-1215':
         return <DashboardPage onNavigate={navigate} onOpenAuth={() => setIsAuthOpen(true)} />;
 
       case '/theme-wordpress':
@@ -257,26 +252,24 @@ export default function App() {
     <LanguageProvider>
       <LogoAssemblySplash minDuration={2000} />
       <div className="min-h-screen flex flex-col bg-white text-neutral-900 font-sans selection:bg-amber-400 selection:text-black">
-        {/* Global Navbar (omitted only in isolated admin mode if preferred, but rendering for seamless testing) */}
-        <Navbar
-          currentPath={currentPath}
-          onNavigate={navigate}
-          onOpenAuth={() => setIsAuthOpen(true)}
-          cartCount={totalCartCount}
-        />
+        {!isGhostAdmin && (
+          <Navbar
+            currentPath={currentPath}
+            onNavigate={navigate}
+            onOpenAuth={() => setIsAuthOpen(true)}
+            cartCount={totalCartCount}
+          />
+        )}
 
-        {/* Main Routed Page Container */}
         <main className="flex-1">{renderRoute()}</main>
 
-        {/* Global Footer (omitted on Ghost Admin page for isolation) */}
         {!isGhostAdmin && <Footer onNavigate={navigate} onOpenAuth={() => setIsAuthOpen(true)} />}
 
-        {/* Global Floating Feedback / Request Button */}
         {!isGhostAdmin && (
           <div className="fixed bottom-20 right-5 z-40">
             <button
               onClick={() => setIsFeedbackOpen(true)}
-              className="group flex items-center gap-2 px-3.5 py-2 bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold text-xs rounded-full shadow-lg shadow-black/40 hover:-translate-y-0.5 transition-all duration-200 border border-slate-700/60 backdrop-blur-sm"
+              className="group flex items-center gap-2 px-3.5 py-2 bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold text-xs rounded-full shadow-lg shadow-black/40 hover:-translate-y-0.5 transition-transform"
               title="Vous cherchez un produit ou service non listé ?"
             >
               <span className="text-sm">💡</span>
@@ -285,26 +278,22 @@ export default function App() {
           </div>
         )}
 
-        {/* Global Support Hub Bubble (AI, WhatsApp Support, Telegram, Email, Live Chat) */}
         {!isGhostAdmin && <SupportBubble />}
 
-        {/* Global Request Modal */}
         <CustomServiceRequestModal
           isOpen={isFeedbackOpen}
           onClose={() => setIsFeedbackOpen(false)}
           defaultCategory="general"
         />
 
-        {/* Global Auth Modal */}
         <AuthModal
           isOpen={isAuthOpen}
           onClose={() => setIsAuthOpen(false)}
-          onLoginSuccess={() => {
+          onSuccess={() => {
             setIsAuthOpen(false);
-            // If on admin route, refresh state
-            if (currentPath === '/xgroup-admin-1215') {
-              navigate('/xgroup-admin-1215');
-            }
+            const loggedUser = authService.getCurrentUser();
+            const isAdmin = loggedUser?.role === 'admin' || loggedUser?.email?.toLowerCase() === 'blaisechristeveste@gmail.com';
+            navigate(isAdmin ? '/dashboard' : '/');
           }}
         />
       </div>
