@@ -21,6 +21,7 @@ import { RequestDesignPage } from './pages/RequestDesignPage';
 import { CartPage, CartItem } from './pages/CartPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { AdminPage } from './pages/AdminPage';
 import { XGroupDigitalCatalogPage } from './pages/XGroupDigitalCatalogPage';
 import { WordPressThemePage } from './pages/WordPressThemePage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -234,7 +235,8 @@ export default function App() {
 
       case '/dashboard':
       case '/xgroup-admin-1215':
-        return <DashboardPage onNavigate={navigate} onOpenAuth={() => setIsAuthOpen(true)} />;
+      case '/admin':
+        return <AdminPage onNavigate={navigate} />;
 
       case '/theme-wordpress':
       case '/wordpress':
